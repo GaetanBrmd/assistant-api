@@ -1,7 +1,11 @@
-const isAuth = async (req, res, next) => {
-  req.body.nb /= 2;
-  console.log('Vu du middleware après modif par celui-ci :', req.body);
-  return next();
+import User from '../../models/user.model';
+
+const attachSession = function (req, res, next) {
+  if (!req.user) {
+    res.send('You are not logged in !').status(401);
+  } else {
+    next();
+  }
 };
 
-export default isAuth;
+export default attachSession;

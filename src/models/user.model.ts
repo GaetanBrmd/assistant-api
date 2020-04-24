@@ -1,28 +1,17 @@
-import { Model, DataTypes } from 'sequelize';
+import mongoose from 'mongoose';
 
-export default class User extends Model {
-  public id!: number;
-  public name!: string;
-  public readonly createdAt!: Date;
-  public readonly updateddAt!: Date;
-  public static modelName: string = 'userModel';
+const User = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      lowercase: true,
+      unique: true,
+      index: true,
+    },
 
-  static async start(sequelize) {
-    User.init(
-      {
-        id: {
-          type: DataTypes.INTEGER,
-          autoIncrement: true,
-          primaryKey: true,
-        },
-        name: {
-          type: new DataTypes.STRING(128),
-          allowNull: false,
-        },
-      },
-      { tableName: 'users', sequelize: sequelize },
-    );
+    password: String,
+  },
+  { timestamps: true },
+);
 
-    return await User.sync();
-  }
-}
+export default mongoose.model<mongoose.Document>('User', User);

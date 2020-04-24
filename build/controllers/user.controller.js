@@ -12,17 +12,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-//Ici on gère les status, la mise en forme de la réponse et les appels aux fonctions des services
-const user_service_1 = __importDefault(require("../services/user.service"));
-const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('Vu du controller :', req.body);
-    const userServiceInstance = new user_service_1.default();
-    return res.status(200).json({
-        messageController: `Tu as post avec le nom ${req.body.name}`,
-        messageService: yield userServiceInstance.sayHelloToUser(req.body.name),
+const user_model_1 = __importDefault(require("../models/user.model"));
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    user_model_1.default.findOne({ email: req.body.email }, function (err, user) {
+        if (!user) {
+            res.send("Can't find this user !").status(401);
+        }
+        else {
+            if (req.body.password === user.password) {
+                // sets a cookie with the user's info
+                req.session.user = user;
+                res.send('Logged in !').status(200);
+            }
+            else {
+                res.send('Wrong credentials...').status(401);
+            }
+        }
     });
 });
+const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newUser = new user_model_1.default(req.body);
+    yield newUser.save().catch((e) => {
+        res.status(400).json(e);
+    });
+});
+const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.session && req.session.user) {
+        req.session.reset();
+        res.status(200).send('Logout');
+    }
+});
 exports.default = {
-    test,
+    login,
+    register,
+    logout,
 };
 //# sourceMappingURL=user.controller.js.map

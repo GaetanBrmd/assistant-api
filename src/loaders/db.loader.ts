@@ -1,24 +1,22 @@
-import { Sequelize } from 'sequelize';
 import config from '../config';
-import models from '../models';
+const mongoose = require('mongoose');
 
 export default async () => {
-  const dbConnection = new Sequelize({
-    database: config.database,
-    dialect: 'sqlite',
-    storage: ':memory:',
-    logging: false,
+  mongoose.Promise = global.Promise;
+
+  await mongoose.connect('mongodb://localhost:27017/assistant', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   });
 
-  if (dbConnection.authenticate()) {
-    for (const m of models) {
-      await m.start(dbConnection);
-      console.log('%s synced ♻ !', m.modelName);
-    }
+  if (mongoose.connection.readyState === 1) {
+    console.log('Connected to MongoDB successfuly !');
   } else {
-    throw new Error('Database not connected 🙌 !');
+    throw new Error('Error trying to connect to MongoDB 🙌');
   }
 
+  mongoose.set('useCreateIndex', true);
+  mongoose.set('useFindAndModify', false);
+
   console.log('Database loaded 🔥 !');
-  return { dbConnection };
 };

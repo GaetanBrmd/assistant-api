@@ -23,7 +23,7 @@ exports.default = ({ expressApp }) => __awaiter(void 0, void 0, void 0, function
     yield jobs_loader_1.default();
     //On pourrait avoir le loader de la DB qui instancie la connexion avec sequelize et la partage avec un dependency Injector
     const db = yield db_loader_1.default();
-    yield dependencyInjector_1.default(db);
+    yield dependencyInjector_1.default();
     console.log('Loading terminé 👍 !');
 });
 //# sourceMappingURL=index.js.map

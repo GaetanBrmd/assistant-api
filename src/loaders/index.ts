@@ -10,7 +10,7 @@ export default async ({ expressApp }) => {
   await jobLoader();
   //On pourrait avoir le loader de la DB qui instancie la connexion avec sequelize et la partage avec un dependency Injector
   const db = await dbLoader();
-  await dependencyInjector(db);
+  await dependencyInjector();
 
   console.log('Loading terminé 👍 !');
 };

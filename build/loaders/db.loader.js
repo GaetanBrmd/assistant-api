@@ -8,30 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = require("sequelize");
-const config_1 = __importDefault(require("../config"));
-const models_1 = __importDefault(require("../models"));
+const mongoose = require('mongoose');
 exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
-    const dbConnection = new sequelize_1.Sequelize({
-        database: config_1.default.database,
-        dialect: 'sqlite',
-        storage: ':memory:',
-        logging: false,
+    mongoose.Promise = global.Promise;
+    yield mongoose.connect('mongodb://localhost:27017/assistant', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     });
-    if (dbConnection.authenticate()) {
-        for (const m of models_1.default) {
-            yield m.start(dbConnection);
-            console.log('%s synced ♻ !', m.modelName);
-        }
+    if (mongoose.connection.readyState === 1) {
+        console.log('Connected to MongoDB successfuly !');
     }
     else {
-        throw new Error('Database not connected 🙌 !');
+        throw new Error('Error trying to connect to MongoDB 🙌');
     }
+    mongoose.set('useCreateIndex', true);
+    mongoose.set('useFindAndModify', false);
     console.log('Database loaded 🔥 !');
-    return { dbConnection };
 });
 //# sourceMappingURL=db.loader.js.map

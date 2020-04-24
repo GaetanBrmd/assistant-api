@@ -1,10 +1,8 @@
 import { Container } from 'typedi';
 //import 'reflect-metadata';
 
-export default ({ dbConnection }: { dbConnection }) => {
+export default () => {
   try {
-    Container.set('db', dbConnection);
-
     //Container.set('mailService',mailgun({apiKey:config.email.apiKey,mail:config.email.mail}))
 
     console.log('Container loaded 🔥 !');

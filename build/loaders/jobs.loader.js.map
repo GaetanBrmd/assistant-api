@@ -1,1 +1,1 @@
-{"version":3,"file":"jobs.loader.js","sourceRoot":"","sources":["../../src/loaders/jobs.loader.ts"],"names":[],"mappings":";;;;;AAAA,kEAA+B;AAC/B,wDAAgC;AAEhC,kBAAe,GAAG,EAAE;IAClB,uBAAE,CAAC,WAAW,CAAC,aAAa,EAAE,cAAI,CAAC,UAAU,CAAC,CAAC;IAC/C,2CAA2C;IAE3C,OAAO,CAAC,GAAG,CAAC,kBAAkB,CAAC,CAAC;AAClC,CAAC,CAAC"}
+{"version":3,"file":"jobs.loader.js","sourceRoot":"","sources":["../../src/loaders/jobs.loader.ts"],"names":[],"mappings":";;AAGA,kBAAe,GAAG,EAAE;IAClB,kDAAkD;IAClD,2CAA2C;IAE3C,OAAO,CAAC,GAAG,CAAC,kBAAkB,CAAC,CAAC;AAClC,CAAC,CAAC"}

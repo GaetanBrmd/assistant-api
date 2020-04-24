@@ -1,3 +1,3 @@
-## Basic NodeJS API
+## Assistant API
 
-A boilerplate for building NodeJS API inspired by the Bulletproof Architecture.
+A simple API to work with my assistant app.

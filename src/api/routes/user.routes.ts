@@ -10,14 +10,17 @@ const route = Router();
 export default (app: Router) => {
   app.use('/user', route);
 
-  route.get('/me', middlewares.isAuth, (req: Request, res: Response) => {
-    return res.json({ user: 'me' }).status(200);
-  });
+  route.post('/login', userCtrl.login);
 
   route.post(
-    '/us',
-    middlewares.isAuth,
-    celebrate({ body: Joi.object({ name: Joi.string().required(), nb: Joi.number().integer().max(1000).required() }) }),
-    userCtrl.test,
+    '/new',
+    celebrate({ body: Joi.object({ email: Joi.string().email().required(), password: Joi.string().required() }) }),
+    userCtrl.register,
   );
+
+  route.get('/logout', middlewares.attachSession, middlewares.isAuth, userCtrl.logout);
+
+  route.get('/me', middlewares.attachSession, middlewares.isAuth, (req: Request, res: Response) => {
+    res.send('Tout est passé !');
+  });
 };

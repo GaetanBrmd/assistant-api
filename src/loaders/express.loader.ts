@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import cors from 'cors';
+import session from 'client-sessions';
 import routes from '../api';
 
 export default async ({ app }: { app: express.Application }) => {
@@ -16,7 +17,16 @@ export default async ({ app }: { app: express.Application }) => {
 
   app.use(bodyParser.json());
 
-  app.use('/api', routes());
+  app.use(
+    session({
+      cookieName: 'session',
+      secret: 'random_string_goes_here',
+      duration: 30 * 60 * 1000,
+      activeDuration: 5 * 60 * 1000,
+    }),
+  );
+
+  app.use('', routes());
 
   //Error handlers
   app.use((err, req, res, next) => {

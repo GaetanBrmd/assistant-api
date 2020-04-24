@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/api/middlewares/index.ts"],"names":[],"mappings":";;;;;AAAA,sDAA8B;AAE9B,kBAAe;IACb,MAAM,EAAN,gBAAM;CAEP,CAAC"}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/api/middlewares/index.ts"],"names":[],"mappings":";;;;;AAAA,oEAA4C;AAC5C,sDAA8B;AAE9B,kBAAe;IACb,aAAa,EAAb,uBAAa;IACb,MAAM,EAAN,gBAAM;CAEP,CAAC"}

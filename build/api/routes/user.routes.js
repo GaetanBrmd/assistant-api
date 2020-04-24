@@ -11,9 +11,11 @@ const user_controller_1 = __importDefault(require("../../controllers/user.contro
 const route = express_1.Router();
 exports.default = (app) => {
     app.use('/user', route);
-    route.get('/me', middlewares_1.default.isAuth, (req, res) => {
-        return res.json({ user: 'me' }).status(200);
+    route.post('/login', user_controller_1.default.login);
+    route.post('/new', celebrate_1.celebrate({ body: celebrate_1.Joi.object({ email: celebrate_1.Joi.string().email().required(), password: celebrate_1.Joi.string().required() }) }), user_controller_1.default.register);
+    route.get('/logout', middlewares_1.default.attachSession, middlewares_1.default.isAuth, user_controller_1.default.logout);
+    route.get('/me', middlewares_1.default.attachSession, middlewares_1.default.isAuth, (req, res) => {
+        res.send('Tout est passé !');
     });
-    route.post('/us', middlewares_1.default.isAuth, celebrate_1.celebrate({ body: celebrate_1.Joi.object({ name: celebrate_1.Joi.string().required(), nb: celebrate_1.Joi.number().integer().max(1000).required() }) }), user_controller_1.default.test);
 };
 //# sourceMappingURL=user.routes.js.map

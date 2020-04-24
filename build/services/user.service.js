@@ -21,7 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //Ici c'est le Service avec les fonctions qui font le vrai taff
 const typedi_1 = require("typedi");
 const events_1 = __importDefault(require("../events/events"));
-const user_model_1 = __importDefault(require("../models/user.model"));
 let UserService = class UserService {
     Constructor() { }
     sayHelloToUser(name) {
@@ -30,7 +29,6 @@ let UserService = class UserService {
             let eventCont = typedi_1.Container.get(events_1.default);
             eventCont.emit('event1');
             eventCont.emit('event2');
-            user_model_1.default.create({ name: name });
             return msg;
         });
     }

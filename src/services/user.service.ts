@@ -14,8 +14,6 @@ export default class UserService {
     eventCont.emit('event1');
     eventCont.emit('event2');
 
-    User.create({ name: name });
-
     return msg;
   }
 }
