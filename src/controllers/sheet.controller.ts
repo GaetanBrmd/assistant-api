@@ -1,7 +1,7 @@
 import Sheet from '../models/sheet.model';
 
 const getSheets = async (req, res) => {
-  res.send(await Sheet.find({ _userId: req.session.user._id }));
+  res.json(await Sheet.find({ _userId: req.session.user._id }));
 };
 
 const addSheet = async (req, res) => {
@@ -11,7 +11,7 @@ const addSheet = async (req, res) => {
   await newSheet
     .save()
     .then(() => {
-      res.send(newSheet);
+      res.json(newSheet);
     })
     .catch((e) => {
       res.status(400).json(e);
@@ -21,7 +21,7 @@ const addSheet = async (req, res) => {
 const updSheet = async (req, res) => {
   await Sheet.findOneAndUpdate({ _id: req.body._id }, req.body)
     .then(() => {
-      res.send('Updated');
+      res.json('Updated');
     })
     .catch((e) => {
       res.status(400).json(e);
@@ -31,7 +31,7 @@ const updSheet = async (req, res) => {
 const delSheet = async (req, res) => {
   Sheet.deleteOne({ _id: req.body._id })
     .then(() => {
-      res.send('Deleted');
+      res.json('Deleted');
     })
     .catch((e) => {
       res.status(400).json(e);

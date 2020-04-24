@@ -11,7 +11,7 @@ export default async ({ app }: { app: express.Application }) => {
     res.status(200).end();
   });
 
-  app.use(cors());
+  app.use(cors({ origin: ['http://localhost:4200'], credentials: true }));
 
   app.use(helmet());
 
@@ -23,6 +23,8 @@ export default async ({ app }: { app: express.Application }) => {
       secret: 'random_string_goes_here',
       duration: 30 * 60 * 1000,
       activeDuration: 5 * 60 * 1000,
+      resave: false,
+      saveUninitialized: true,
     }),
   );
 

@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sheet_model_1 = __importDefault(require("../models/sheet.model"));
 const getSheets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send(yield sheet_model_1.default.find({ _userId: req.session.user._id }));
+    res.json(yield sheet_model_1.default.find({ _userId: req.session.user._id }));
 });
 const addSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     req.body._userId = req.session.user._id;
@@ -22,7 +22,7 @@ const addSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield newSheet
         .save()
         .then(() => {
-        res.send(newSheet);
+        res.json(newSheet);
     })
         .catch((e) => {
         res.status(400).json(e);
@@ -31,7 +31,7 @@ const addSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const updSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield sheet_model_1.default.findOneAndUpdate({ _id: req.body._id }, req.body)
         .then(() => {
-        res.send('Updated');
+        res.json('Updated');
     })
         .catch((e) => {
         res.status(400).json(e);
@@ -40,7 +40,7 @@ const updSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const delSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     sheet_model_1.default.deleteOne({ _id: req.body._id })
         .then(() => {
-        res.send('Deleted');
+        res.json('Deleted');
     })
         .catch((e) => {
         res.status(400).json(e);

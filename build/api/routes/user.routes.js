@@ -14,8 +14,8 @@ exports.default = (app) => {
     route.post('/login', user_controller_1.default.login);
     route.post('/new', celebrate_1.celebrate({ body: celebrate_1.Joi.object({ email: celebrate_1.Joi.string().email().required(), password: celebrate_1.Joi.string().required() }) }), user_controller_1.default.register);
     route.get('/logout', middlewares_1.default.attachSession, middlewares_1.default.isAuth, user_controller_1.default.logout);
-    route.get('/me', middlewares_1.default.attachSession, middlewares_1.default.isAuth, (req, res) => {
-        res.send('Tout est passé !');
+    route.get('', middlewares_1.default.attachSession, middlewares_1.default.isAuth, (req, res) => {
+        res.json('Connected');
     });
 };
 //# sourceMappingURL=user.routes.js.map

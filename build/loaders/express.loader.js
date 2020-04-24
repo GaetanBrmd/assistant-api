@@ -22,7 +22,7 @@ exports.default = ({ app }) => __awaiter(void 0, void 0, void 0, function* () {
     app.get('/status', (req, res) => {
         res.status(200).end();
     });
-    app.use(cors_1.default());
+    app.use(cors_1.default({ origin: ['http://localhost:4200'], credentials: true }));
     app.use(helmet_1.default());
     app.use(body_parser_1.default.json());
     app.use(client_sessions_1.default({
@@ -30,6 +30,8 @@ exports.default = ({ app }) => __awaiter(void 0, void 0, void 0, function* () {
         secret: 'random_string_goes_here',
         duration: 30 * 60 * 1000,
         activeDuration: 5 * 60 * 1000,
+        resave: false,
+        saveUninitialized: true,
     }));
     app.use('', api_1.default());
     //Error handlers

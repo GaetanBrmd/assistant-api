@@ -20,7 +20,7 @@ export default (app: Router) => {
 
   route.get('/logout', middlewares.attachSession, middlewares.isAuth, userCtrl.logout);
 
-  route.get('/me', middlewares.attachSession, middlewares.isAuth, (req: Request, res: Response) => {
-    res.send('Tout est passé !');
+  route.get('', middlewares.attachSession, middlewares.isAuth, (req: Request, res: Response) => {
+    res.json('Connected');
   });
 };
