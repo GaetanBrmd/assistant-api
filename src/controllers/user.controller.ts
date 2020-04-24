@@ -21,9 +21,14 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   const newUser = new User(req.body);
 
-  await newUser.save().catch((e) => {
-    res.status(400).json(e);
-  });
+  await newUser
+    .save()
+    .then(() => {
+      res.send(newUser);
+    })
+    .catch((e) => {
+      res.status(400).json(e);
+    });
 };
 
 const logout = async (req, res) => {

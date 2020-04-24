@@ -32,7 +32,12 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const newUser = new user_model_1.default(req.body);
-    yield newUser.save().catch((e) => {
+    yield newUser
+        .save()
+        .then(() => {
+        res.send(newUser);
+    })
+        .catch((e) => {
         res.status(400).json(e);
     });
 });
