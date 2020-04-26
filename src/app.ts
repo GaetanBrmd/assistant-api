@@ -1,13 +1,22 @@
 import express from 'express';
 import config from './config';
+const fs = require('fs');
+const https = require('https');
 
 async function startServer() {
+  const options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+  };
+
   const app = express();
 
-  //On va lancement le chargement de tous les loaders
+  //On va attendre le chargement de tous les loaders
   await require('./loaders').default({ expressApp: app });
 
-  app.listen(config.port, (err) => {
+  var httpsServer = https.createServer(options, app);
+
+  httpsServer.listen(config.port, (err) => {
     if (err) {
       return console.error(err);
     }
