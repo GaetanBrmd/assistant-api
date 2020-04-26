@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sheet_model_1 = __importDefault(require("../models/sheet.model"));
 const getSheets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json(yield sheet_model_1.default.find({ _userId: req.session.user._id }));
+    res.json(yield sheet_model_1.default.find({ _userId: req.session.user._id }).select('titre type description'));
 });
 const addSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     req.body._userId = req.session.user._id;
@@ -29,9 +29,10 @@ const addSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 const updSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield sheet_model_1.default.findOneAndUpdate({ _id: req.body._id }, req.body)
-        .then(() => {
-        res.json('Updated');
+    console.log(req.body);
+    yield sheet_model_1.default.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
+        .then((updated) => {
+        res.json(updated);
     })
         .catch((e) => {
         res.status(400).json(e);

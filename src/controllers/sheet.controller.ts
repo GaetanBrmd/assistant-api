@@ -1,7 +1,7 @@
 import Sheet from '../models/sheet.model';
 
 const getSheets = async (req, res) => {
-  res.json(await Sheet.find({ _userId: req.session.user._id }));
+  res.json(await Sheet.find({ _userId: req.session.user._id }).select('titre type description'));
 };
 
 const addSheet = async (req, res) => {
@@ -19,9 +19,10 @@ const addSheet = async (req, res) => {
 };
 
 const updSheet = async (req, res) => {
-  await Sheet.findOneAndUpdate({ _id: req.body._id }, req.body)
-    .then(() => {
-      res.json('Updated');
+  console.log(req.body);
+  await Sheet.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
+    .then((updated) => {
+      res.json(updated);
     })
     .catch((e) => {
       res.status(400).json(e);

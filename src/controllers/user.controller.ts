@@ -3,7 +3,6 @@ import UserService from '../services/user.service';
 import User from '../models/user.model';
 
 const login = async (req, res) => {
-  console.log(req.body);
   User.findOne({ email: req.body.email }, function (err, user) {
     if (!user) {
       res.status(401).json({

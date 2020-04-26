@@ -27,7 +27,7 @@ exports.default = (app) => {
             description: celebrate_1.Joi.string().optional(),
         }),
     }), sheet_controller_1.default.updSheet);
-    route.delete('/sheet', middlewares_1.default.attachSession, middlewares_1.default.isAuth, celebrate_1.celebrate({
+    route.post('/sheet/del', middlewares_1.default.attachSession, middlewares_1.default.isAuth, celebrate_1.celebrate({
         body: celebrate_1.Joi.object({
             _id: celebrate_1.Joi.string().required(),
         }),

@@ -41,8 +41,8 @@ export default (app: Router) => {
     sheetCtrl.updSheet,
   );
 
-  route.delete(
-    '/sheet',
+  route.post(
+    '/sheet/del',
     middlewares.attachSession,
     middlewares.isAuth,
     celebrate({
