@@ -17,6 +17,7 @@ exports.default = (app) => {
             titre: celebrate_1.Joi.string().required(),
             type: celebrate_1.Joi.string().required(),
             description: celebrate_1.Joi.string().required(),
+            contenu: celebrate_1.Joi.string().required(),
         }),
     }), sheet_controller_1.default.addSheet);
     route.patch('/sheet', middlewares_1.default.attachSession, middlewares_1.default.isAuth, celebrate_1.celebrate({
@@ -25,6 +26,7 @@ exports.default = (app) => {
             titre: celebrate_1.Joi.string().optional(),
             type: celebrate_1.Joi.string().optional(),
             description: celebrate_1.Joi.string().optional(),
+            contenu: celebrate_1.Joi.string().optional(),
         }),
     }), sheet_controller_1.default.updSheet);
     route.post('/sheet/del', middlewares_1.default.attachSession, middlewares_1.default.isAuth, celebrate_1.celebrate({

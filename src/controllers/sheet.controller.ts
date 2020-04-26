@@ -1,7 +1,7 @@
 import Sheet from '../models/sheet.model';
 
 const getSheets = async (req, res) => {
-  res.json(await Sheet.find({ _userId: req.session.user._id }).select('titre type description'));
+  res.json(await Sheet.find({ _userId: req.session.user._id }).select('titre type description contenu'));
 };
 
 const addSheet = async (req, res) => {

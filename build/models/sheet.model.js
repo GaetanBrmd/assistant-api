@@ -24,6 +24,11 @@ const Sheet = new mongoose_1.default.Schema({
         required: true,
         minglength: 1,
     },
+    contenu: {
+        type: String,
+        required: true,
+        minglength: 1,
+    },
 }, { timestamps: true });
 exports.default = mongoose_1.default.model('Sheet', Sheet);
 //# sourceMappingURL=sheet.model.js.map

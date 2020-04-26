@@ -21,6 +21,11 @@ const Sheet = new mongoose.Schema(
       required: true,
       minglength: 1,
     },
+    contenu: {
+      type: String,
+      required: true,
+      minglength: 1,
+    },
   },
   { timestamps: true },
 );
