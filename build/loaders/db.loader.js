@@ -8,11 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const config_1 = __importDefault(require("../config"));
 const mongoose = require('mongoose');
 exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
     mongoose.Promise = global.Promise;
-    yield mongoose.connect('mongodb://localhost:27017/assistant', {
+    yield mongoose.connect(config_1.default.database_url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });

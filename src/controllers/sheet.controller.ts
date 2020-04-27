@@ -19,7 +19,6 @@ const addSheet = async (req, res) => {
 };
 
 const updSheet = async (req, res) => {
-  console.log(req.body);
   await Sheet.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
     .then((updated) => {
       res.json(updated);

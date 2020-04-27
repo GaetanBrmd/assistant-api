@@ -13,6 +13,7 @@ if (!envFound) {
 }
 exports.default = {
     port: parseInt(process.env.PORT, 10),
-    database: process.env.DATABASE,
+    database_url: process.env.DATABASE_URL,
+    session_secret: process.env.SESSION_SECRET,
 };
 //# sourceMappingURL=index.js.map

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 export default async () => {
   mongoose.Promise = global.Promise;
 
-  await mongoose.connect('mongodb://localhost:27017/assistant', {
+  await mongoose.connect(config.database_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

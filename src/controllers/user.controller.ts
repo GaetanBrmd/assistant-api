@@ -23,6 +23,7 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
+  console.log('register');
   const newUser = new User(req.body);
 
   await newUser

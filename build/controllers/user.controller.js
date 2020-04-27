@@ -35,6 +35,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('register');
     const newUser = new user_model_1.default(req.body);
     yield newUser
         .save()

@@ -29,7 +29,6 @@ const addSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 const updSheet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     yield sheet_model_1.default.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
         .then((updated) => {
         res.json(updated);

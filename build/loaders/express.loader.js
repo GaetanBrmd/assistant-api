@@ -17,17 +17,18 @@ const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const client_sessions_1 = __importDefault(require("client-sessions"));
 const api_1 = __importDefault(require("../api"));
+const config_1 = __importDefault(require("../config"));
 exports.default = ({ app }) => __awaiter(void 0, void 0, void 0, function* () {
     //Status
     app.get('/status', (req, res) => {
         res.status(200).end();
     });
-    app.use(cors_1.default({ origin: ['http://localhost:4200'], credentials: true }));
+    app.use(cors_1.default({ origin: ['http://localhost:4200', 'https://assistant-583d6.web.app/'], credentials: true }));
     app.use(helmet_1.default());
     app.use(body_parser_1.default.json());
     app.use(client_sessions_1.default({
         cookieName: 'session',
-        secret: 'random_string_goes_here',
+        secret: config_1.default.session_secret,
         duration: 30 * 60 * 1000,
         activeDuration: 5 * 60 * 1000,
         resave: false,
