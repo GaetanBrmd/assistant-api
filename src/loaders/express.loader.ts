@@ -12,7 +12,7 @@ export default async ({ app }: { app: express.Application }) => {
     res.status(200).end();
   });
 
-  app.use(cors({ origin: ['http://localhost:4200', 'https://assistant-583d6.web.app/'], credentials: true }));
+  app.use(cors({ origin: ['http://localhost:4200', 'https://assistant-583d6.web.app'], credentials: true }));
 
   app.use(helmet());
 

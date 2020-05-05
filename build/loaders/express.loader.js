@@ -23,7 +23,7 @@ exports.default = ({ app }) => __awaiter(void 0, void 0, void 0, function* () {
     app.get('/status', (req, res) => {
         res.status(200).end();
     });
-    app.use(cors_1.default({ origin: ['http://localhost:4200', 'https://assistant-583d6.web.app/'], credentials: true }));
+    app.use(cors_1.default({ origin: ['http://localhost:4200', 'https://assistant-583d6.web.app'], credentials: true }));
     app.use(helmet_1.default());
     app.use(body_parser_1.default.json());
     app.use(client_sessions_1.default({

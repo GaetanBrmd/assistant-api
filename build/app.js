@@ -18,15 +18,16 @@ const fs = require('fs');
 const https = require('https');
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
+        /*
         const options = {
-            key: fs.readFileSync('key.pem'),
-            cert: fs.readFileSync('cert.pem'),
-        };
+          key: fs.readFileSync('key.pem'),
+          cert: fs.readFileSync('cert.pem'),
+        };*/
         const app = express_1.default();
         //On va attendre le chargement de tous les loaders
         yield require('./loaders').default({ expressApp: app });
-        var httpsServer = https.createServer(options, app);
-        httpsServer.listen(config_1.default.port, (err) => {
+        //var httpsServer = https.createServer(options, app);
+        app.listen(config_1.default.port, (err) => {
             if (err) {
                 return console.error(err);
             }

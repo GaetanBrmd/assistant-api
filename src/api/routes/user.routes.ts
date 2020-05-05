@@ -21,6 +21,6 @@ export default (app: Router) => {
   route.get('/logout', middlewares.attachSession, middlewares.isAuth, userCtrl.logout);
 
   route.get('', middlewares.attachSession, middlewares.isAuth, (req: Request, res: Response) => {
-    res.json('Connected');
+    res.send(true);
   });
 };
